@@ -1,7 +1,8 @@
 package tictactoe;
-
+//CopyRight 2013 Miles Blue
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -21,6 +22,9 @@ public class TicTacToe implements ActionListener
     JButton point8;
     JButton point9;
     int playCount = 0;
+    int maxCount = 8;
+    int width = Toolkit.getDefaultToolkit().getScreenSize().width;
+    int height = Toolkit.getDefaultToolkit().getScreenSize().height;
 
     public static void main(String[] args)
     {
@@ -31,7 +35,7 @@ public class TicTacToe implements ActionListener
     {
         tttField = new JFrame("Let's play tic-tac-toe!");
         tttField.setLayout(new GridLayout(3, 3));
-        tttField.setSize(2000, 2000);
+        tttField.setSize(width, height);
         tttField.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         point1 = new JButton("point 1");
@@ -78,7 +82,7 @@ public class TicTacToe implements ActionListener
     public void actionPerformed(ActionEvent joe)
     {
         JButton clickButton = (JButton) joe.getSource();
-        if (playCount == 8)
+        if (playCount == maxCount)
         {
             JOptionPane.showMessageDialog(null, "Tie game!");
            System.exit(1);
@@ -86,7 +90,8 @@ public class TicTacToe implements ActionListener
         clickButton.setFont(new Font("Bank Gothic", Font.BOLD, 99));
         if (clickButton.getText().equals("o") || clickButton.getText().equals("x"))
         {
-           JOptionPane.showMessageDialog(null, "Busted!"); 
+           JOptionPane.showMessageDialog(null, "Busted!");
+           System.exit(0);
         }
         
         if (playCount % 2 == 0)
